@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="日积月累，一飞冲天">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      利用github + hexo搭建个人博客 | Jeremy blog
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Jeremy blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>利用github + hexo搭建个人博客</h2>
+  <p class="post-date">2018-03-22</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>前两天一同学把他的博客地址发在我们的班级群里面，让我们去观摩他的技术文档，说是买个服务器自己搭在服务器上，然后群里突然就掀起了一阵服务器热，大家都去买（正好腾讯云打折，一年也就120RMB）。虽然我是买了服务器，不过我的都是用来搭建SS和v2ray的（配置贼烂）。后来同事让我去用GitHub搭建一个，想想也是写给自己和同学同事看的也就没必要搞那么复杂了，就去通过GitHub Page + hexo搭建了一个，这篇文章介绍一下我的搭建过程（虽然百度有很多，不过还是想用自己的语言来组织），整个过程还算顺利，第一次写文章，如果有写的不好的地方 请多指正 谢谢。</p>
+<h1 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h1><ul>
+<li>安装nodejs <a href="https://nodejs.org/en/" title="nodejs" target="_blank" rel="noopener">nodejs官网地址</a></li>
+<li>安装git <a href="https://git-scm.com/" title="git" target="_blank" rel="noopener">git下载地址</a></li>
+<li>GitHub新建仓库（New Repositories）</li>
+<li>配置GitHub SSH密钥</li>
+<li>安装hexo</li>
+</ul>
+<h1 id="安装nodejs-git"><a href="#安装nodejs-git" class="headerlink" title="安装nodejs/git"></a>安装nodejs/git</h1><p>为什么安装nodejs（因为hexo基于nodejs开发）直接去官网下载即可所以前两个步骤就不多赘述了,都是一直下一步（百度很多，有些配置可以自己改，我都是下一步）.安装完成之后cmd输入命令 git/node –version,如图1所示即正确安装，如果报图2的错，应该就是环境变量没有配置，将安装的目录地址配置到path里面再试一次。</p>
+<p><img src="https://i.imgur.com/VaMy3vR.png" alt=""><br><img src="https://i.imgur.com/BIR6RL0.png" alt=""></p>
+<h1 id="新建GitHub仓库（New-Repositories）"><a href="#新建GitHub仓库（New-Repositories）" class="headerlink" title="新建GitHub仓库（New Repositories）"></a>新建GitHub仓库（New Repositories）</h1><p>注册一个GitHub，有的就直接开始吧。</p>
+<p>登陆之后  点击New Repositories</p>
+<p><img src="https://i.imgur.com/PbYovvr.png" alt=""></p>
+<p>repository name填写自己的GitHub的用户名.github.io（也就是你以后的博客名了），Description随便写一个吧，readme可要可不要。点击Create repository。</p>
+<h1 id="配置GitHub密钥"><a href="#配置GitHub密钥" class="headerlink" title="配置GitHub密钥"></a>配置GitHub密钥</h1><p>桌面空白处右键Git Bash Here</p>
+<pre><code>ssh-keygen -t rsa -C &quot;your&apos;s emaill address&quot;
+</code></pre><p>会提示你保存的路径回车即可，输入密码密码看不见，完成之后会生成两个文件，id_rsa和id_rsa.pub，用编辑器打开id_rsa.pub选中里面的全部内容复制下来。</p>
+<p>登录GitHub点击头像下拉列表有个settings点击进入，左侧树有个SSH and GPG keys选中<br><img src="https://i.imgur.com/nvVnO86.png" alt=""><br><img src="https://i.imgur.com/80QQbHd.png" alt=""></p>
+<p>按照图示完成操作  SSH配置即完成。记得设置用户名和邮箱</p>
+<pre><code>$ git config --global user.name &quot;Your&apos;s name&quot;
+$ git config --global user.email &quot;Your&apos;s email address&quot;
+</code></pre><p>Your’s name是你的GitHub用户名，Your’s email address是你的邮箱地址</p>
+<h1 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h1><p>nodejs和Git完成之后我们可以来安装hexo了，桌面任意位置右键鼠标选择 Git Bash Here或者进入Git安装目录双击git-bash.exe。</p>
+<p>安装hexo，等待安装完成</p>
+<pre><code>npm install -g hexo-cli 。
+</code></pre><p>新建一个空文件夹用于个人博客</p>
+<pre><code>hexo inio
+</code></pre><p>配置_config.yml配置文件（为了快速搭建成功，只修改deploy部分，其余部分以后再出一篇修改配置文件的，目前知道的不多），github用户名当然是改成自己的了。文件在你刚刚创建的文件夹下，懂Linux的也可以直接vim改，改完保存。</p>
+<pre><code>deploy:
+      type: git
+      repository: https://github.com/wisemanjie/wisemanjie.github.io.git
+      branch: master
+</code></pre><p>在你创建的文件夹下打开git-bash输入命令依次输入以下命令</p>
+<pre><code>$ hexo clean
+$ hexo g
+$ hexo s
+</code></pre><p>现在本地看看效果 <a href="https://localhost:4000，如果配置没有出错，你会看见效果的（应该还是会很开心的）。接下来就是部署到github上面依次输入以下命令" target="_blank" rel="noopener">https://localhost:4000，如果配置没有出错，你会看见效果的（应该还是会很开心的）。接下来就是部署到github上面依次输入以下命令</a></p>
+<pre><code>$ hexo clean
+$ hexo g
+$ hexo d
+</code></pre><p>博客地址为</p>
+<pre><code>http://yourname.github.io
+</code></pre><p>到这里所有的配置及部署已完成，本篇幅只介绍步骤，如有问题可以留言或者等我出一篇遇到的问题或者去百度、Google，相信你很快就会看到自己辛苦的成果（给自己一个赞吧）。</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Hexo" >
+    <span class="tag-code">Hexo</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2018/03/21/第一篇博客/">
+        <span class="nav-arrow">← </span>
+        
+          第一篇博客
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2018/03/27/HashMap源码，实现原理/">
+        
+          HashMap源码，实现原理
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#搭建步骤"><span class="toc-nav-text">搭建步骤</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#安装nodejs-git"><span class="toc-nav-text">安装nodejs/git</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#新建GitHub仓库（New-Repositories）"><span class="toc-nav-text">新建GitHub仓库（New Repositories）</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#配置GitHub密钥"><span class="toc-nav-text">配置GitHub密钥</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#安装hexo"><span class="toc-nav-text">安装hexo</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2018/03/22/hexo搭建个人博客/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "wisemanjie";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "利用github + hexo搭建个人博客",
+        owner: "wisemanjie",
+        repo: "wisemanjie.github.io",
+        oauth: {
+          client_id: "d6c81e6bec573725b732",
+          client_secret: "627b4c50a4f570d68aefe000bc6f92322e507b00"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/wisemanjie">Jeremy</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
