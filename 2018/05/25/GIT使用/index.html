@@ -10,7 +10,7 @@
   
   <title>
     
-      HashMap源码，实现原理 | Jeremy blog
+      GIT使用 | Jeremy blog
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -138,8 +138,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>HashMap源码，实现原理</h2>
-  <p class="post-date">2018-03-27</p>
+  <h2>GIT使用</h2>
+  <p class="post-date">2018-05-25</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -147,39 +147,106 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p>HashMap是一个散列表，存储的内容是键值对（key-value）映射。</p>
-<p>HashMap继承AbstractMap,实现了Map、Cloneable、Serializable接口</p>
-<p>HashMap线程不安全,因为实现不同步，key和value都可以为空，无序</p>
-<p>HashMap有两个参数影响其性能，capacity（初始容量）、loadfactory（加载因子）</p>
-<p>HashMap的key-value都是存储在Entry数组中，Entry实际上是一个单向链表，实现了Map.Entry接口，即实现getKey() getValue() setValue(V value) equals(object o) hashcode()这些函数，基本的读取key value的方法</p>
-<p>HashMap共有四个构造函数</p>
-<pre><code>HashMap()    默认
-HashMap(int initialCapacity, float loadFactor)    指定容量大小和加载因子
-HashMap(int initialCapacity)    指定容量大小
-HashMap(Map&lt;k,v&gt;m)    包含&quot;子Map&quot;的构造函数
-</code></pre><p>HashMap主要对外接口</p>
-<pre><code>clear()    清空HashMap 将所有的元素设为null
-containsKey()    判断HashMap是否包含Key，通过getEntry(key)获取key对应的Entry，判断Entry是否为null.getEntery()的作用就是返回&quot;键为key&quot;的键值对。（HashMap把key为null的元素放在table[0]中）
-containsValue()    判断HashMap是否包含&quot;值为value&quot;的元素。
-containsNullValue()    判断HashMap中是否包含&quot;值为null&quot;的元素
-entrySet(),values(),keySet()
-get()    获取key对应的value
-put()    对外提供接口，让HashMap对象可以通过put()将&quot;key-value&quot;添加到HashMap中
-putAll()    将&quot;m&quot;的全部元素添加到HashMap中
-remove()    删除&quot;键为key&quot;的元素
-</code></pre><p>HashMap实现了Cloneable,Serializable两个接口</p>
-<pre><code>Cloneable接口即实现了clone方法，clone一个hashmap对象返回
-Serializable接口实现了串行读取，写入功能
-    串行写入函数是writeObject(),作用将总的容量，实际容量，所有的Entry都写入到输出流中
-    串行读取函数是readObject，它的作用是将总的容量，实际容量，所有的Entry都写入到输出流中
-</code></pre></section>
+    <section class="markdown-content"><ul>
+<li>新建版本库</li>
+</ul>
+<p>新建文件夹（最好为空，文件名不要有中文）<br>文件夹空白处鼠标右键Git Bash Here<br>命令行输入<code>git init</code>如不发生错误文件夹内会多出一个.git文件夹（看不到文件夹选项打开隐藏文件权限即可）。新建文件放入本地库（最好别用Windows自带的文本编辑器）</p>
+<pre><code>git add    本地库新增文件    
+
+git commit -m &lt;message&gt;    本地库文件提交
+
+git status    随时掌握工作区状态
+
+git diff    查看修改内容
+
+git log    (--pretty=oneline)    查看提交历史(类似一串1094ad...的是commit id)
+
+git reset (--hard commit id)（版本号可以不写全） 上个版本HEAD^上上个版本HEAD^^网上100个版本HEAD~100
+
+git reflog        查看命令历史
+</code></pre><ul>
+<li>工作区和暂存区</li>
+</ul>
+<p>工作区指你本地自己创建的目录，工作区目录下有个<code>.git</code>（隐藏目录），它是Git的版本库，里面存了很多东西  最重要的是成为stage或者index的暂存区。还有Git为我们创建的第一个分支<code>master</code>，志向<code>master</code>的指针<code>HEAD</code></p>
+<p>文件往Git版本库里添加的时候分为两步执行：</p>
+<p>第一步<code>git add</code>把文件添加进去，实际上就是把文件修改添加到暂存区；</p>
+<p>第二步<code>git commit</code>提交更改，把暂存区的所有内容提交到当前分支；</p>
+<ul>
+<li>撤销修改<br>git checkout – file（可以丢弃工作区的修改，–很重要，没有就是另一种切换到另一分支的命令）</li>
+</ul>
+<p>分为两种情况：</p>
+<p>第一种文件自修改后还没有放到暂存区，现在撤销修改会回到和版本库一模一样的状态。</p>
+<p>第二种文件已经添加到暂存区，又做了修改，现在撤销修改就回到添加到暂存区的状态。</p>
+<ul>
+<li>删除文件</li>
+</ul>
+<p>如果要从版本库删除文件 <code>git rm file</code> <code>git commit</code></p>
+<ul>
+<li>git远程库</li>
+</ul>
+<p>先要进行sshkey绑定（自行百度）</p>
+<pre><code>关联远程库 git remote add origin git@github.com:michaelliao/learngit.git
+
+第一次推送 git push -u origin master
+
+以后每次推送 git push origin master
+</code></pre><p>由于远程库是空的第一次加上了<code>-u</code>参数，推送并关联远程库，以后可以简化命令</p>
+<ul>
+<li><p>分支管理</p>
+<p>  查看分支    git branch</p>
+<p>  创建分支    git branch <name></name></p>
+<p>  切换分支    git checkout <name></name></p>
+<p>  创建和切换分支    git checkout -b <name></name></p>
+<p>  合并某分支到当前分支    git merge <name></name></p>
+<p>  删除分支    git branch -d <name></name></p>
+</li>
+</ul>
+<p>解决冲突</p>
+<pre><code>git log --graph    查看分支合并图
+</code></pre><p>合并分支时加上<code>--no-ff</code>参数就可以使用普通模式合并，合并后的历史有分支，可以看出来曾经做过合并</p>
+<p>Bug分支</p>
+<p>修复bug时，创建新的分支修改，然后合并 删除分支；</p>
+<p>手头工作没有完成的时候可以<code>git stash</code> 存储；修复后，在<code>git statsh pop</code> 删除；<code>git stash list</code> 查看存储的工作区； <code>git stash apply stash@{0}</code>恢复指定的stash。</p>
+<p>多人协作</p>
+<p>工作模式：</p>
+<p>1、<code>git push origin &lt;branch-name&gt;</code>推送自己的修改</p>
+<p>2、推送失败，应该是远程分支比你的本地更新，需要<code>git push</code>试图合并</p>
+<p>3、合并有冲突，则解决冲突，并在本地提交</p>
+<p>4、没有冲突或者冲突解决之后，<code>git push origin &lt;branch-name&gt;</code></p>
+<p>如果<code>git pull</code>提示<code>no tracking infomation</code>,则说明本地分支和远程分支的链接关系没有创建，用命令<code>git branch --set-upstream-to &lt;branch-name&gt; origin/&lt;branch-name&gt;</code>。</p>
+<pre><code>git remote -v    查看远程库信息
+git checkout -b branch-name origin/branch-name 在本地创建和远程分支对应的分支，名称最好一样
+git branch --set-upstream branch-name origin/branch-name    简历本地分支和远程分支的关联
+</code></pre><p>远程抓取分支<code>git pull</code>,有冲突先解决冲突</p>
+<p>-标签tag</p>
+<p><code>git tag &lt;tagname&gt;</code>用于新建一个标签，默认为<code>HEAD</code>，也可以制定一个commit id;</p>
+<p><code>git tag -a &lt;tagname&gt; -m &quot;&quot;</code>可以指定标签信息;</p>
+<p><code>git tag</code>查看所有标签。</p>
+<p><code>git show &lt;tagname&gt;</code>查看标签信息</p>
+<p>如果没有推送到远程库，<code>Delete tag &lt;tagname&gt;</code>删除标签，如果已经推送到远程库，先从本地删除，然后从远程删除 <code>git push origin:refs/tags/&lt;tagname&gt;</code></p>
+<p><code>git push origin &lt;tagname&gt;</code>推送本地标签</p>
+<p><code>git push origin --tags</code>可以推送全部未推送过的本地标签</p>
+<p>在github上可以Fork任意开源仓库，Fork之后获得仓库的读写权限，</p>
+<p><code>git config --global color.ui true</code> 使Git有颜色</p>
+<ul>
+<li>搭建Git服务器</li>
+</ul>
+<p>准备Linux服务器（Ubuntu和Debian最佳）</p>
+<p>如果已经有sudo权限 <code>sudo apt-get install git 安装git</code>    <code>sudo adduser git  创建一个git用户</code></p>
+<p>把所有用户的公钥导入 <code>/home/git/.ssh/authorized_keys</code>文件里，一行一个</p>
+<p>初始化Git仓库 <code>sudo git init --bare &lt;name&gt;.git</code></p>
+<p>将owner改为Git <code>sudo chown -R git:git name.git</code></p>
+<p>禁用shell登录<code>git:x:1001:1001:,,,:/home/git:/bin/bash</code>替换成<code>git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell</code></p>
+<pre><code>git clone git@server:/srv/name.git
+</code></pre><p>要方便管理密钥 用<a href="https://github.com/sitaramc/gitolite" title="Gitosis" target="_blank" rel="noopener">Gitosis</a>,更严格的<a href="https://github.com/sitaramc/gitolite" title="Gitolite" target="_blank" rel="noopener">Gitolite</a></p>
+</section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#Java基础" >
-    <span class="tag-code">Java基础</span>
+  <a href="/tags#GIT" >
+    <span class="tag-code">GIT</span>
   </a>
 
       </div>
@@ -190,20 +257,13 @@ Serializable接口实现了串行读取，写入功能
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2018/03/22/hexo搭建个人博客/">
+      <a class="nav-left" href="/2018/03/27/HashMap源码，实现原理/">
         <span class="nav-arrow">← </span>
         
-          利用github + hexo搭建个人博客
+          HashMap源码，实现原理
         
       </a>
     
-    
-      <a class="nav-right" href="/2018/05/25/GIT使用/">
-        
-          GIT使用
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -259,7 +319,7 @@ Serializable接口实现了串行读取，写入功能
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2018/03/27/HashMap源码，实现原理/';
+    var url = 'http://yoursite.com/2018/05/25/GIT使用/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -315,7 +375,7 @@ Serializable接口实现了串行读取，写入功能
     var gitmentConfig = "wisemanjie";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "HashMap源码，实现原理",
+        id: "GIT使用",
         owner: "wisemanjie",
         repo: "wisemanjie.github.io",
         oauth: {
